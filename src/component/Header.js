@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export const Header = props => {
     return (
         <div>
-        shippr
+        <image></image>
         </div>
     )
 }
