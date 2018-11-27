@@ -1,42 +1,52 @@
 import React from "react";
 import { Hackathon } from "./Hackathon";
+import axios from "axios";
 
+export class Content extends React.Component {
+  state = {
+    hackathons: null
+  };
 
-export const Content = () => {
-  const hackathons = [
-    {
-      id: 1,
-      title: "Retake control of all your deliveries",
-      date: "12/11/18",
-      address: "rue des palais 44",
-      description: "blablabla"
-    },
-    {
-      id: 2,
-      title: "Retake control of all your deliveries",
-      date: "12/12/18",
-      address: "rue des palais 44",
-      description: "blablabla"
-    },
-    {
-      id: 3,
-      title: "Retake control of all your deliveries",
-      date: "12/01/19",
-      address: "rue des palais 44",
-      description: "blablabla"
+  componentDidMount() {
+    axios.get("http://localhost:3003/hackatons").then(res => {
+      this.setState({ hackathons: res.data });
+    });
+  }
+
+  render() {
+    if (!this.state.hackathons) {
+      return <div>Un instant....</div>;
     }
-  ];
-  return (
-    <div>
-      {hackathons.map(({ id, title, date, address, description }) => (
-        <Hackathon
-          key={id}
-          title={title}
-          date={date}
-          address={address}
-          description={description}
-        />
-      ))}
-    </div>
-  );
-};
+    const hacks = [...this.state.hackathons];
+
+    const pastHacks = hacks.sort((a, b) => {
+      return new Date(b.date).getTime() - new Date(a.date).getTime();
+    });
+    const futurHack = pastHacks.splice(0, 1)[0];
+
+    return (
+      <div>
+        <div>
+          <Hackathon
+            key={futurHack.id}
+            title={futurHack.title}
+            date={futurHack.date}
+            address={futurHack.address}
+            description={futurHack.description}
+          />
+        </div>
+        <div>
+          {pastHacks.map(({ id, title, date, address, description }) => (
+            <Hackathon
+              key={id}
+              title={title}
+              date={date}
+              address={address}
+              description={description}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
+}
