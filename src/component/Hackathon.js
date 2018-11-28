@@ -7,6 +7,7 @@ const HackathonBox = styled.div`
   margin-top: 20px;
   display: flex;
   flex-direction: row;
+  
 `;
 const Empty = styled.div`
   flex: 1;
@@ -26,9 +27,9 @@ const Description = styled.div`
   font-weight: lighter;
 `;
 
-const Bold = styled.span`
-  font-weight: normal;
-`;
+// const Bold = styled.span`
+//   font-weight: normal;
+// `;
 const Bottom = styled.div`
   display: flex;
   justify-content: flex-end;

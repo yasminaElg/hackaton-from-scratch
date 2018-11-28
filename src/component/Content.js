@@ -27,13 +27,19 @@ export class Content extends React.Component {
     return (
       <div>
         <div>
+          <div>
+            <span>NEXT EVENT</span><br/>
+          </div>
           <Hackathon
             key={futurHack.id}
             title={futurHack.title}
             date={futurHack.date}
             address={futurHack.address}
             description={futurHack.description}
-          />
+          /><br/><br/>
+        </div>
+        <div>
+          <span>PREVIOUS EVENTS</span>
         </div>
         <div>
           {pastHacks.map(({ id, title, date, address, description }) => (
