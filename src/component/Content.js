@@ -1,23 +1,24 @@
 import React from "react";
 import { Hackathon } from "./Hackathon";
-import axios from "axios";
 
 export class Content extends React.Component {
-  state = {
-    hackathons: null
-  };
-
-  componentDidMount() {
-    axios.get("http://localhost:3003/hackatons").then(res => {
-      this.setState({ hackathons: res.data });
-    });
-  }
-
+  // state = {
+  //   hackathons: null
+  // };
+  //
+  //
+  // componentDidMount() {
+  //   axios.get("http://localhost:3003/hackatons").then(res => {
+  //     this.setState({ hackathons: res.data});
+  //   });
+  // }
   render() {
-    if (!this.state.hackathons) {
+    if (!this.props) {
       return <div>Un instant....</div>;
     }
-    const hacks = [...this.state.hackathons];
+
+    const {hacks} = this.props;
+    console.log(hacks)
 
     const pastHacks = hacks.sort((a, b) => {
       return new Date(b.date).getTime() - new Date(a.date).getTime();
