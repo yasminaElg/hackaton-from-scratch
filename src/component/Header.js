@@ -101,7 +101,7 @@ export const Header = ({cpt}) => {
               <img src={logo} alt={"SHIPPR"} height="150" width="200" />
             </Logo>
             <ButtonBox>
-              <Button to="/CreateHack"> {/*Button = styled.Link*/}
+              <Button to="/Admin"> {/*Button = styled.Link*/}
                 <p>CREATE AN EVENT</p>
               </Button>
             </ButtonBox>

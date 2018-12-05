@@ -19,9 +19,10 @@ class Home extends React.Component {
     if (!this.state.hackathons) {
       return <div>Un instant....</div>;
     }
+    console.log(this.state.hackathons);
     return (
       <Fragment>
-        <Header cpt={this.state.cpt} />
+        <Header hacks={this.state.hackathons} cpt={this.state.cpt} />
         <Content hacks={this.state.hackathons}/>
       </Fragment>
     );
