@@ -18,9 +18,11 @@ export class CudHack extends React.Component {
   }
 
   fetchHackaton = async () => {
-    const res = await axios.get(
-      `http://localhost:3003/hackatons/${this.state.id}`
-    );
+    const res = await axios({
+      url: `http://localhost:3003/hackatons/${this.state.id}`,
+      method: "get",
+      headers: { authorization: localStorage.getItem("token") }
+    });
     this.setState({
       title: res.data.title,
       date: res.data.date,
@@ -32,10 +34,12 @@ export class CudHack extends React.Component {
   handleSubmit = async event => {
     event.preventDefault();
 
-    await axios.patch(
-      `http://localhost:3003/hackatons/${this.state.id}`,
-      this.state
-    );
+    await axios({
+      url: `http://localhost:3003/hackatons/${this.state.id}`,
+      data: this.state,
+      method: "patch",
+      headers: { authorization: localStorage.getItem("token")}
+    });
     this.props.history.push("/admin");
   };
 

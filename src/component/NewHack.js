@@ -14,14 +14,20 @@ export class NewHack extends React.Component {
   handleSubmit = async event => {
     event.preventDefault();
 
-    await axios.post(`http://localhost:3003/hackatons`, this.state);
-    this.props.history.push("/admin")
+    await axios({
+      url: `http://localhost:3003/hackatons/`,
+      data: this.state,
+      method: "post",
+      headers: { authorization: localStorage.getItem("token") }
+    });
+
+    this.props.history.push("/admin");
   };
 
   render() {
     return (
       <div>
-        <Header/>
+        <Header />
         <form onSubmit={this.handleSubmit}>
           <label>
             Title:
@@ -65,4 +71,3 @@ export class NewHack extends React.Component {
 }
 
 NewHack.propTypes = {};
-
