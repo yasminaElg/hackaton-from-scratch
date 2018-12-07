@@ -1,5 +1,8 @@
 import React from "react";
 import axios from "axios";
+import DatePicker from "react-datepicker";
+import { Header } from "./Header";
+import "react-datepicker/dist/react-datepicker.css";
 
 export class CudHack extends React.Component {
   state = {
@@ -29,19 +32,23 @@ export class CudHack extends React.Component {
   handleSubmit = async event => {
     event.preventDefault();
 
-    await axios.patch(`http://localhost:3003/hackatons/${this.state.id}`, this.state);
-    this.props.history.push("/admin")
+    await axios.patch(
+      `http://localhost:3003/hackatons/${this.state.id}`,
+      this.state
+    );
+    this.props.history.push("/admin");
   };
 
-  handleInput = (event) => {
+  handleInput = event => {
     this.setState({
       [event.target.name]: event.target.value
-    })
-  }
+    });
+  };
 
   render() {
     return (
       <div>
+        <Header />
         <form onSubmit={this.handleSubmit}>
           <label>
             Title:
@@ -49,16 +56,15 @@ export class CudHack extends React.Component {
               type="text"
               name="title"
               value={this.state.title}
-              onChange={event => this.setState({ title: event.target.value })}
+              onChange={event => this.handleInput(event)}
             />
           </label>
           <label>
             date:
-            <input
-              type="text"
+            <DatePicker
               name="date"
-              value={this.state.date}
-              onChange={event => this.setState({ date: event.target.value })}
+              selected={new Date(this.state.date)}
+              onChange={date => this.setState({ date: date })}
             />
           </label>
           <label>
@@ -67,7 +73,7 @@ export class CudHack extends React.Component {
               type="text"
               name="address"
               value={this.state.address}
-              onChange={event => this.setState({ address: event.target.value })}
+              onChange={event => this.handleInput(event)}
             />
           </label>
           <label>
@@ -76,9 +82,7 @@ export class CudHack extends React.Component {
               type="text"
               name="description"
               value={this.state.description}
-              onChange={event =>
-                this.setState({ description: event.target.value })
-              }
+              onChange={event => this.handleInput(event)}
             />
           </label>
           <input type="submit" value="Submit" />

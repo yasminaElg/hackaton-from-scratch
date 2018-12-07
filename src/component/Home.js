@@ -3,7 +3,7 @@ import { Header } from "./Header";
 import { Content } from "./Content";
 import axios from "axios";
 
-class Home extends React.Component {
+export class Home extends React.Component {
   state = {
     hackathons: null,
     cpt: null
@@ -31,4 +31,3 @@ class Home extends React.Component {
 
 Home.propTypes = {};
 
-export default Home;

@@ -1,7 +1,9 @@
 import React from "react";
 import axios from "axios";
+import DatePicker from "react-datepicker/es";
+import { Header } from "./Header";
 
-class NewHack extends React.Component {
+export class NewHack extends React.Component {
   state = {
     title: null,
     date: null,
@@ -19,6 +21,7 @@ class NewHack extends React.Component {
   render() {
     return (
       <div>
+        <Header/>
         <form onSubmit={this.handleSubmit}>
           <label>
             Title:
@@ -30,10 +33,10 @@ class NewHack extends React.Component {
           </label>
           <label>
             date:
-            <input
-              type="text"
+            <DatePicker
               name="date"
-              onChange={event => this.setState({ date: event.target.value })}
+              selected={new Date(this.state.date)}
+              onChange={date => this.setState({ date: date })}
             />
           </label>
           <label>
@@ -63,4 +66,3 @@ class NewHack extends React.Component {
 
 NewHack.propTypes = {};
 
-export default NewHack;

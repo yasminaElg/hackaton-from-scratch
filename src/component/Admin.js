@@ -5,6 +5,7 @@ import styled from "styled-components";
 import { Link } from "react-router-dom";
 import { colors } from "../colors";
 import { fonts } from "../fonts";
+import { Header } from "./Header";
 
 const Button = styled(Link)`
   padding: 0 auto;
@@ -52,6 +53,7 @@ export class Admin extends React.Component {
 
     return (
       <div>
+        <Header/>
         {hacks.map(({ id, title, date, address, description }) => (
           <div key={id}>
             <Hackathon
@@ -60,7 +62,7 @@ export class Admin extends React.Component {
               address={address}
               description={description}
             />
-            <Button to={`/update/${id}`}>
+            <Button to={`/admin/update/${id}`}>
               <p>update</p>
             </Button>
             <button type="submit" onClick={() => this.removeHack(id)}>
@@ -69,7 +71,7 @@ export class Admin extends React.Component {
           </div>
         ))}
         <div>
-          <Link to={"/create"}>
+          <Link to={"/admin/create"}>
             <p>NEW HACKATHON</p>
           </Link>
         </div>

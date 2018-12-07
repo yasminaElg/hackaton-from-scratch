@@ -1,8 +1,7 @@
 import React from "react";
-// import PropTypes from 'prop-types';
 import styled from "styled-components";
 import hands from "../image/imgHands.png";
-import logo from "../image/logoShippr.png";
+import logo from "../image/shippr.png";
 import { fonts } from "../fonts";
 import { colors } from "../colors";
 import { Link } from "react-router-dom";
@@ -56,7 +55,7 @@ const Empty = styled.div`
   flex: 1;
 `;
 
-const Logo = styled.div`
+const Logo = styled(Link)`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -97,11 +96,11 @@ export const Header = ({cpt}) => {
         <Image>
           <TopImage>
             <Empty>{cpt}</Empty>
-            <Logo>
-              <img src={logo} alt={"SHIPPR"} height="150" width="200" />
+            <Logo to={"/"}>
+              <img src={logo} alt={"SHIPPR"} height="100" width="200" />
             </Logo>
             <ButtonBox>
-              <Button to="/Admin"> {/*Button = styled.Link*/}
+              <Button to="/admin"> {/*Button = styled.Link*/}
                 <p>CREATE AN EVENT</p>
               </Button>
             </ButtonBox>
