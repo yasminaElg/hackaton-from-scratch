@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { fonts } from "../fonts";
 import PropTypes from "prop-types";
+import moment from "moment";
 
 const HackathonBox = styled.div`
   margin-top: 20px;
@@ -66,7 +67,7 @@ export const Hackathon = ({ title, date, address, description }) => {
       <BoxLeft>
         <Title>{title}</Title>
         <Bottom>
-          <Date>{date}</Date>
+          <Date>{moment(date).format("DD-MM-YYYY, HH:mm")}</Date>
           <Address>{address}</Address>
         </Bottom>
       </BoxLeft>

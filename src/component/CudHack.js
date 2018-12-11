@@ -3,7 +3,13 @@ import axios from "axios";
 import DatePicker from "react-datepicker";
 import { Header } from "./Header";
 import "react-datepicker/dist/react-datepicker.css";
+import styled from "styled-components";
 
+
+const MyDatePicker = styled(DatePicker)`
+  width: 180px;
+  height: 15px;
+`
 export class CudHack extends React.Component {
   state = {
     id: this.props.match.params.id,
@@ -49,6 +55,9 @@ export class CudHack extends React.Component {
     });
   };
 
+
+
+
   render() {
     return (
       <div>
@@ -65,10 +74,15 @@ export class CudHack extends React.Component {
           </label>
           <label>
             date:
-            <DatePicker
+            <MyDatePicker
               name="date"
               selected={new Date(this.state.date)}
               onChange={date => this.setState({ date: date })}
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={15}
+              dateFormat="d MMMM, yyyy h:mm aa"
+              timeCaption="time"
             />
           </label>
           <label>
