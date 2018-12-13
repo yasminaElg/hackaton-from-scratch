@@ -6,7 +6,6 @@ import { Link } from "react-router-dom";
 import { colors } from "../colors";
 import { fonts } from "../fonts";
 import { Header } from "./Header";
-import moment from "moment"
 
 const Button = styled(Link)`
   padding: 0 auto;
