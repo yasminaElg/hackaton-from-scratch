@@ -25,7 +25,7 @@ export class CudHack extends React.Component {
 
   fetchHackaton = async () => {
     const res = await axios({
-      url: `http://localhost:3003/hackatons/${this.state.id}`,
+      url: `http://localhost:3003/hackathons/${this.state.id}`,
       method: "get",
       headers: { authorization: localStorage.getItem("token") }
     });
@@ -41,7 +41,7 @@ export class CudHack extends React.Component {
     event.preventDefault();
 
     await axios({
-      url: `http://localhost:3003/hackatons/${this.state.id}`,
+      url: `http://localhost:3003/hackathons/${this.state.id}`,
       data: this.state,
       method: "patch",
       headers: { authorization: localStorage.getItem("token")}

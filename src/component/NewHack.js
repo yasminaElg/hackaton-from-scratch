@@ -2,7 +2,13 @@ import React from "react";
 import axios from "axios";
 import DatePicker from "react-datepicker/es";
 import { Header } from "./Header";
+import styled from "styled-components";
 
+
+const MyDatePicker = styled(DatePicker)`
+  width: 180px;
+  height: 15px;
+`
 export class NewHack extends React.Component {
   state = {
     title: null,
@@ -15,7 +21,7 @@ export class NewHack extends React.Component {
     event.preventDefault();
 
     await axios({
-      url: `http://localhost:3003/hackatons/`,
+      url: `http://localhost:3003/hackathons/`,
       data: this.state,
       method: "post",
       headers: { authorization: localStorage.getItem("token") }
@@ -39,10 +45,15 @@ export class NewHack extends React.Component {
           </label>
           <label>
             date:
-            <DatePicker
+            <MyDatePicker
               name="date"
               selected={new Date(this.state.date)}
               onChange={date => this.setState({ date: date })}
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={15}
+              dateFormat="d MMMM, yyyy h:mm aa"
+              timeCaption="time"
             />
           </label>
           <label>

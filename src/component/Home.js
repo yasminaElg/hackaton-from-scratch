@@ -11,7 +11,7 @@ export class Home extends React.Component {
 
 
   componentDidMount() {
-    axios.get("http://localhost:3003/hackatons").then(res => {
+    axios.get("http://localhost:3003/hackathons").then(res => {
       this.setState({ hackathons: res.data, cpt: res.data.length});
     });
   }

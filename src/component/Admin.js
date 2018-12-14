@@ -31,12 +31,16 @@ export class Admin extends React.Component {
   }
 
   fetchHackatons = async () => {
-    const res = await axios.get("http://localhost:3003/hackatons");
+    const res = await axios.get("http://localhost:3003/hackathons");
     this.setState({ hackathons: res.data });
   };
 
   removeHack = async id => {
-    await axios.delete(`http://localhost:3003/hackatons/${id}`);
+    await axios({
+      url: `http://localhost:3003/hackathons/${id}`,
+      method: "delete",
+      headers: { authorization: localStorage.getItem("token")}
+    });
     await this.fetchHackatons();
   };
 
